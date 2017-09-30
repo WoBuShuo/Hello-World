@@ -27,6 +27,7 @@ import io.reactivex.functions.Consumer;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,7 +37,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "main";
+    private static final String TAG = "=============";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +76,14 @@ public class MainActivity extends AppCompatActivity {
                 + "version_code=" + versionCode + "\n"
                 + "version_name=" + versionName + "\n";
         OkHttpClient client = new OkHttpClient();
-//        Request request = new Request.Builder().url("http://10.0.3.2:8080/text/AServlet").post(RequestBody.create(MEDIA_TYPE_MARKDOWN,
-//                postBody)).build();
-        Request request = new Request.Builder().url("http://192.168.1.110:8080/text/AServlet").post(RequestBody.create(MEDIA_TYPE_MARKDOWN,
-                postBody)).build();
+
+
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("version_code",versionCode);
+        Log.e(TAG, "requestData: "+versionCode );
+        builder.add("version_name",versionName);
+        RequestBody formBody = builder.build();
+        Request request = new Request.Builder().url("http://192.168.1.110:8080/text/AServlet").post(formBody).build();
 
 
         client.newCall(request).enqueue(new Callback() {

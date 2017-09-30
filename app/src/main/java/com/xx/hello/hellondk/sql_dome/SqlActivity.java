@@ -3,6 +3,7 @@ package com.xx.hello.hellondk.sql_dome;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import com.xx.hello.hellondk.R;
 import com.xx.hello.hellondk.phone.Invoke;
 import com.xx.hello.hellondk.phone.InvokeHttp;
+
+import activitys.MainActivity;
 
 /**
  * Created by Hello on 2017/9/13.
@@ -78,13 +81,15 @@ public class SqlActivity extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.sql_in:
                 //22.962145,113.982667
-                writableDatabase = dbHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put("start_address", "百德新街");
-                values.put("end_address", "雪厂街");
-                values.put("start_latlng", "112.33235542");
-                values.put("end_latlng", "112.33235542");
-                writableDatabase.insert("History", null, values);
+//                writableDatabase = dbHelper.getWritableDatabase();
+//                ContentValues values = new ContentValues();
+//                values.put("start_address", "百德新街");
+//                values.put("end_address", "雪厂街");
+//                values.put("start_latlng", "112.33235542");
+//                values.put("end_latlng", "112.33235542");
+//                writableDatabase.insert("History", null, values);
+
+                startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.sql_out:
                 writableDatabase = dbHelper.getWritableDatabase();
